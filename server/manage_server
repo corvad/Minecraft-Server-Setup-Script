@@ -18,37 +18,37 @@ echo "[11] Unschedule Backups."
 echo "[12] Backup Server Now."
 read -p "Enter Selection: " selection
 
-if [$selection -eq 0]
+if [ $selection -eq 0 ]
 then
   ./scripts/connect_server
   exit
 
-elif [$selection -eq 1]
+elif [ $selection -eq 1 ]
 then
   ./scripts/start_server
   exit
 
-elif [$selection -eq 2]
+elif [ $selection -eq 2 ]
 then
   ./scripts/stop_server
   exit
 
-elif [$selection -eq 3]
+elif [ $selection -eq 3 ]
 then
   ./scripts/save_server
   exit
 
-elif [$selection -eq 4]
+elif [ $selection -eq 4 ]
 then
   ./scripts/whitelist_server
   exit
 
-elif [$selection -eq 5]
+elif [ $selection -eq 5 ]
 then
   ./scripts/oracle_port_config
   exit
 
-elif [$selection -eq 6]
+elif [ $selection -eq 6 ]
 then
   read -p "How many days would you like to keep the daily backups?: " days
   if [[ -n ${days//[0-9]/} ]]
