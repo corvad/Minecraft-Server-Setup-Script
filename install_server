@@ -50,16 +50,15 @@ then
 fi
 
 dest = ${session}_backup
-sed -i '/s=/c\s='"\"${session}\"" ./server/backup_server
-sed -i '/v=/c\v='"\"${version}\"" ./server/backup_server
-sed -i '/destination=/c\destination='"\"${dest}\"" ./server/backup_server
-sed -i '/days=/c\days='"\"${days}\"" ./server/backup_server
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/backup_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/backup_server
+sed -i '/destination=/c\destination='"\"${dest}\"" ./server/scripts/backup_server
+sed -i '/days=/c\days='"\"${days}\"" ./server/scripts/backup_server
 
-sed -i '/s=/c\s='"\"${session}\"" ./server/backup_s_server
-sed -i '/v=/c\v='"\"${version}\"" ./server/backup_s_server
-sed -i '/destination=/c\destination='"\"${dest}\"" ./server/backup_s_server
-sed -i '/days=/c\days='"\"${days}\"" ./server/backup_s_server
-
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/backup_s_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/backup_s_server
+sed -i '/destination=/c\destination='"\"${dest}\"" ./server/scripts/backup_s_server
+sed -i '/days=/c\days='"\"${days}\"" ./server/scripts/backup_s_server
 
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/connect_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/connect_server

@@ -7,10 +7,10 @@ days="days_placeholder"
 echo "Server Backup Script"
 echo "Name: $s"
 echo "Minecraft Version: $v"
-./stop_server
+./scripts/stop_server
 sleep 45
-find ../../${destination} -mtime +${days} -type d -exec rm -r {} \;
+find ../${destination} -mtime +${days} -type d -exec rm -r {} \;
 date="$(date +"%d-%m-%Y")"
-mkdir ../../${destination}/${date}
-cp -r * ../../${destination}/${date}
+mkdir ../${destination}/${date}
+cp -r * ../${destination}/${date}
 echo "Server Backup Complete."

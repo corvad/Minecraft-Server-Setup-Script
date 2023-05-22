@@ -128,7 +128,8 @@ then
 elif [ $selection -eq 12 ]
 then
   read -p "This process will create a backup, it will have to shutdown the server for a few minutes but will automatically start it again. Please be patient as the backup may not show progress while it is running. Press any key to continue."
-  ./scripts/backup_s_server
+  ./scripts/backup_server
+  ./scripts/start_server
   exit
 
 else
