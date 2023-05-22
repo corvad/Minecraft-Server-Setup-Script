@@ -1,6 +1,6 @@
 Minecraft Setup and Managing Script Suite
 
-Make sure you have installed Java 17.
+Make sure you have installed Java 17 and curl.
 
 Unzip the files.
 
