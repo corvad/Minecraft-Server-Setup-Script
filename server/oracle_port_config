@@ -1,0 +1,29 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Server Firewall Script (Oracle Linux)"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+echo "Modes:"
+echo "[0] Add Port to Firewall."
+echo "[1] Remove Port from Firewall"
+read -p "Enter Selection: " selection
+if [ $selection -eq 0 ]
+then
+  read -p "Port (Normally 25565): " port
+  sudo firewall-cmd --permanent --zone=public --add-port=${port}/tcp
+  sudo firewall-cmd --permanent --zone=public --add-port=${port}/udp
+  sudo firewall-cmd --reload
+  echo "Firewall Port Added."
+elif [ $selection -eq 1 ]
+then
+  read -p "Port (Normally 25565): " port
+  sudo firewall-cmd --permanent --zone=public --remove-port=${port}/tcp
+  sudo firewall-cmd --permanent --zone=public --remove-port=${port}/udp
+  sudo firewall-cmd --reload
+  echo "Firewall Port Removed."
+else
+  echo "ERROR! -- Invalid Selection!"
+  exit
+fi

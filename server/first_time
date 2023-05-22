@@ -1,0 +1,20 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "First Time Setup Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+echo "This will download and run the server once to create the eula and then it will open the eula.txt file in nano for you to accept." 
+echo "Then it will open the server.properties file for initial configuration."
+echo "After this it will run the firewall script for oracle."
+echo "Then it will run the crontab setup script."
+echo "Finally, then it will run the production start_server script to get the server up and running."
+read -p "Server Jar URL: " jar_url
+curl $jar_url -o server.jar
+java -Xmx2G -jar server.jar nogui
+nano eula.txt
+nano server.properties
+./oracle_port_config
+./crontab_setup
+./start_server

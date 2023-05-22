@@ -1,0 +1,16 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Stop Server Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+tmux has-session -t $s 2>/dev/null
+if [ $? != 0 ]; then
+  echo "ERROR! -- Server Not Running!"
+  exit
+fi
+read -p "This will shutdown the server and will open the server connection to monitor the shutdown process. It is important you do not type anything while the connection is open during this step. Press any key to continue."
+tmux send-keys -t $s 'stop' C-m
+tmux attach -t $s
+echo "$v Server Shutdown"

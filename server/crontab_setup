@@ -1,0 +1,14 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Crontab Setup Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+read -p "IMPORTANT!!! This script MUST be run from the server directory. If this is run from the install_server script (as part of the first time install process) then everything should be good. Press any key to continue."
+crontab -l > cron_temp
+echo "0 0 * * * cd $PWD && ./backup_server_${v}" >> cron_temp
+echo "@reboot cd $PWD && ./start_server_${v}" >> cron_temp
+crontab cron_temp
+rm cron_temp
+echo "Crontab Setup"

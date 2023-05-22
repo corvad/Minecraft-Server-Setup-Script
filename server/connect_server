@@ -1,0 +1,15 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Connect Server Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+tmux has-session -t $s 2>/dev/null
+if [ $? != 0 ]; then
+  echo "ERROR! -- Server Not Running!"
+  exit
+fi
+echo "This will connect to the debug console for the server. To exit press CTRL+B then D."
+read -p "Connect? Press any key to continue."
+tmux attach -t $s

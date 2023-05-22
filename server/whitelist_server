@@ -1,0 +1,60 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Server Whitelist Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+tmux has-session -t $s 2>/dev/null
+if [ $? != 0 ]; then
+  echo "ERROR! -- Server Not Running!"
+  exit
+fi
+echo "Modes:"
+echo "[0] Turn on Whitelist."
+echo "[1] Turn off Whitelist."
+echo "[2] Add Player to Whitelist."
+echo "[3] Delete Player from Whitelist."
+read -p "Enter Selection: " selection
+if [ $selection -eq 0 ]
+then
+  tmux send-keys -t $s 'whitelist on' C-m
+  for i in {1..2}
+  do
+    echo "Turning On Whitelist.."
+    sleep 1
+  done
+  echo "Whitelist Turned On."
+elif [ $selection -eq 1 ]
+then
+  tmux send-keys -t $s 'whitelist off' C-m
+  for i in {1..2}
+  do
+    echo "Turning Off Whitelist.."
+    sleep 1
+  done
+  echo "Whitelist Turned Off."
+elif [ $selection -eq 2 ]
+then
+  read -p "Player Name: " pn
+  tmux send-keys -t $s "whitelist add $pn" C-m
+  for i in {1..2}
+  do
+    echo "Adding $pn to Whitelist.."
+    sleep 1
+  done
+  echo "Added $pn to Whitelist."
+elif [ $selection -eq 3 ]
+then
+  read -p "Player Name: " pn
+  tmux send-keys -t $s "whitelist remove $pn" C-m
+  for i in {1..2}
+  do
+    echo "Removing $pn from Whitelist.."
+    sleep 1
+  done
+  echo "Removed $pn from Whitelist."
+else
+  echo "ERROR! -- Invalid Selection!"
+  exit
+fi

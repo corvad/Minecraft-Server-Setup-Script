@@ -1,0 +1,21 @@
+#!/bin/bash
+clear
+clear
+s="session_placeholder"
+v="version_placeholder"
+mem="mem_placeholder"
+jar="server.jar"
+echo "Server Start Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+tmux has-session -t $s 2>/dev/null
+if [ $? != 0 ]; then
+  tmux new -d -s $s "java -Xmx${mem}G -jar $jar nogui"
+  echo "$v Server Started"
+  echo "To connect to it please run the connect script."
+  echo "To stop running it run the stop script."
+  exit
+else
+  echo "$v Server Already Seems to be Running. Please Run the Stop Script."
+fi
+

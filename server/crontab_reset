@@ -1,0 +1,13 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Crontab Reset Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+read -p "Due to limitations in this script it will open up the crontab and you will have to manually delete it. This is the only way to do it easiest without deleting all other installations' crontabs. Just delete the two lines that correspond to this installation. Press any key to continue."
+crontab -l > cron_temp
+nano cron_temp
+crontab cron_temp
+rm cron_temp
+echo "Crontab Reset"

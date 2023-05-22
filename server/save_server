@@ -1,0 +1,19 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Server Save Flush Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+tmux has-session -t $s 2>/dev/null
+if [ $? != 0 ]; then
+  echo "ERROR! -- Server Not Running!"
+  exit
+fi
+tmux send-keys -t $s "save-all flush" C-m
+for i in {1..15}
+do
+  echo "$v Server Saving.."
+  sleep 1
+done
+echo "$v Server Saved"

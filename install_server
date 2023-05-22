@@ -1,0 +1,17 @@
+#!/bin/bash
+clear
+echo "Welcome to the Next Generation Minecraft Installer!"
+read -p "What would you like to name this server instance: " session
+read -p "What version would you be running: " version
+if["$session" == ""]
+then
+  echo "ERROR! -- Name was empty. Program Ending."
+  exit
+elif["$session" -eq *" "* ]
+then
+  echo "ERROR! -- Name has spaces. Spaces are not allowed. Program Ending."
+  exit
+fi
+session+="-"
+session+="$RANDOM"
+echo $session
