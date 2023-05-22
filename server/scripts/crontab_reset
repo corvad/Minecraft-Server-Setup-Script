@@ -1,0 +1,12 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Crontab Reset Script"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+crontab -l > cron_temp
+sed -i "/$s/d" cron_temp
+crontab cron_temp
+rm cron_temp
+echo "Crontab Reset"

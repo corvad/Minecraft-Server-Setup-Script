@@ -1,17 +1,97 @@
 #!/bin/bash
 clear
 echo "Welcome to the Next Generation Minecraft Installer!"
-read -p "What would you like to name this server instance: " session
-read -p "What version would you be running: " version
-if["$session" == ""]
+if ! java --version | grep 17 -q
 then
-  echo "ERROR! -- Name was empty. Program Ending."
-  exit
-elif["$session" -eq *" "* ]
-then
-  echo "ERROR! -- Name has spaces. Spaces are not allowed. Program Ending."
+  echo "ERROR! -- Cannot find valid java instance. Must be version 17. Please make sure it is installed."
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
   exit
 fi
+read -p "What would you like to name this server instance: " session
+if [ -z "$session" ]
+then
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
+  echo "ERROR! -- Name cannot be empty."
+  exit
+fi
+session=$(echo $session | tr " " "-")
 session+="-"
 session+="$RANDOM"
-echo $session
+read -p "What version would you be running: " version
+if [ -z "$version" ]
+then
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
+  echo "ERROR! -- Version cannot be empty."
+  exit
+fi
+read -p "How much memory would you like to run the server with? (GB): " mem
+if [[ -n ${mem//[0-9]/} ]]
+then
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
+  echo "ERROR! -- Memory amount cannot be string. Must be number."
+  exit
+fi
+read -p "How many days would you like to keep the daily backups?: " days
+if [[ -n ${days//[0-9]/} ]]
+then
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
+  echo "ERROR! -- Days amount cannot be string. Must be number."
+  exit
+fi
+
+dest = ${session}_backup
+sed -i '/s=/c\s='"\"${session}\"" ./server/backup_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/backup_server
+sed -i '/destination=/c\destination='"\"${dest}\"" ./server/backup_server
+sed -i '/days=/c\days='"\"${days}\"" ./server/backup_server
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/backup_s_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/backup_s_server
+sed -i '/destination=/c\destination='"\"${dest}\"" ./server/backup_s_server
+sed -i '/days=/c\days='"\"${days}\"" ./server/backup_s_server
+
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/connect_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/connect_server
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/crontab_reset
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/crontab_reset
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/crontab_setup
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/crontab_setup
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/first_time
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/first_time
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/oracle_port_config
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/oracle_port_config
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/save_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/save_server
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/start_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/start_server
+sed -i '/mem=/c\mem='"\"${mem}\"" ./server/scripts/start_server
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/stop_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/stop_server
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/whitelist_server
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/whitelist_server
+
+mv server $session
+mv server_backup ${session}_backup
+rm ./install_server
+cd $session
+cd scripts
+./first_time

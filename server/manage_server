@@ -1,0 +1,137 @@
+#!/bin/bash
+clear
+echo "Server Management Script"
+echo "NOTE: This script must be run directly from the minecraft server's primary directory. IE: Where the server.jar file is."
+echo "Possible Options:"
+echo "[0] Connect to Server."
+echo "[1] Start Server."
+echo "[2] Stop Server."
+echo "[3] Save (Flush to Disk) Server."
+echo "[4] Whitelist Modifications."
+echo "[5] Firewall Settings."
+echo "[6] Change Backup Retention Period."
+echo "[7] Change Server Version."
+echo "[8] Redownload Different Jar."
+echo "[9] Change Memory Amount."
+echo "[10] Schedule Backups."
+echo "[11] Unschedule Backups."
+echo "[12] Backup Server Now."
+read -p "Enter Selection: " selection
+
+if [$selection -eq 0]
+then
+  ./scripts/connect_server
+  exit
+
+elif [$selection -eq 1]
+then
+  ./scripts/start_server
+  exit
+
+elif [$selection -eq 2]
+then
+  ./scripts/stop_server
+  exit
+
+elif [$selection -eq 3]
+then
+  ./scripts/save_server
+  exit
+
+elif [$selection -eq 4]
+then
+  ./scripts/whitelist_server
+  exit
+
+elif [$selection -eq 5]
+then
+  ./scripts/oracle_port_config
+  exit
+
+elif [$selection -eq 6]
+then
+  read -p "How many days would you like to keep the daily backups?: " days
+  if [[ -n ${days//[0-9]/} ]]
+  then
+    echo "ERROR! -- Days amount cannot be string. Must be number."
+    exit
+  fi
+  sed -i '/days=/c\days='"\"${days}\"" ./scripts/backup_server
+  sed -i '/days=/c\days='"\"${days}\"" ./scripts/backup_s_server
+  echo "Backup retention set to $days days."
+  exit
+
+elif [ $selection -eq 7 ]
+then
+  read -p "What would you like the new version of this server instance to be?: " version
+  if [ -z "$version" ]
+  then
+    echo "ERROR! -- Name cannot be empty."
+    exit
+  fi
+  session=$(echo $session | tr " " "-")
+  session+="-"
+  session+="$RANDOM"
+  read -p "To have the server run on a new version the server will have to go offline. This process will also create a backup. Please be patient as the backup may not show progress while it is running. Press any key to continue."
+  ./scripts/backup_server
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/backup_server
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/backup_s_server
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/connect_server
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/crontab_reset
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/crontab_setup
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/first_time
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/oracle_port_config
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/save_server
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/start_server
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/stop_server
+  sed -i '/v=/c\v='"\"${version}\"" ./scripts/whitelist_server
+  read -p "Server Version Updated to $session. You will still need to download the updated Jar! Press any key to start the server."
+  ./scripts/start_server
+  exit
+
+elif [ $selection -eq 8 ]
+then
+  read -p "To download a new jar the server will have to go offline. This process will also create a backup. Please be patient as the backup may not show progress while it is running. Press any key to continue."
+  ./scripts/backup_server
+  read -p "Server Jar URL: " jar_url
+  curl $jar_url -o server.jar
+  echo "Jar Downloaded and Saved."
+  read -p "New Server Jar Downloaded. If Jar downloaded is a different version please also run the change version script. Press any key to start the server."
+  ./scripts/start_server
+  exit
+
+elif [ $selection -eq 9 ]
+then
+  read -p "How much memory would you like to run the server with? (GB): " mem
+  if [[ -n ${mem//[0-9]/} ]]
+  then
+    echo "ERROR! -- Memory amount cannot be string. Must be number."
+    exit
+  fi
+  read -p "To change ram/memory amount the server will have to go offline. Press any key to continue."
+  ./scripts/stop_server
+  sed -i '/mem=/c\mem='"\"${mem}\"" ./scripts/start_server
+  read -p "Memory Amount Changed. Press any key to start the server."
+  ./scripts/start_server
+  exit
+
+elif [ $selection -eq 10 ]
+then
+  ./scripts/crontab_setup
+  exit
+
+elif [ $selection -eq 11 ]
+then
+  ./scripts/crontab_reset
+  exit
+
+elif [ $selection -eq 12 ]
+then
+  read -p "This process will create a backup, it will have to shutdown the server for a few minutes but will automatically start it again. Please be patient as the backup may not show progress while it is running. Press any key to continue."
+  ./scripts/backup_s_server
+  exit
+
+else
+  echo "ERROR! -- Invalid Selection!"
+  exit
+fi
