@@ -19,4 +19,5 @@ nano server.properties
 cd scripts
 ./oracle_port_config
 ./crontab_setup
-./start_server
+cd ..
+./scripts/start_server

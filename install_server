@@ -49,7 +49,7 @@ then
   exit
 fi
 
-dest = ${session}_backup
+dest="${session}_backup"
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/backup_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/backup_server
 sed -i '/destination=/c\destination='"\"${dest}\"" ./server/scripts/backup_server

@@ -1,6 +1,5 @@
 #!/bin/bash
 clear
-clear
 s="session_placeholder"
 v="version_placeholder"
 mem="mem_placeholder"

@@ -69,9 +69,6 @@ then
     echo "ERROR! -- Name cannot be empty."
     exit
   fi
-  session=$(echo $session | tr " " "-")
-  session+="-"
-  session+="$RANDOM"
   read -p "To have the server run on a new version the server will have to go offline. This process will also create a backup. Please be patient as the backup may not show progress while it is running. Press any key to continue."
   ./scripts/backup_server
   sed -i '/v=/c\v='"\"${version}\"" ./scripts/backup_server
@@ -85,7 +82,7 @@ then
   sed -i '/v=/c\v='"\"${version}\"" ./scripts/start_server
   sed -i '/v=/c\v='"\"${version}\"" ./scripts/stop_server
   sed -i '/v=/c\v='"\"${version}\"" ./scripts/whitelist_server
-  read -p "Server Version Updated to $session. You will still need to download the updated Jar! Press any key to start the server."
+  read -p "Server Version Updated to $version. You will still need to download the updated Jar! Press any key to start the server."
   ./scripts/start_server
   exit
 

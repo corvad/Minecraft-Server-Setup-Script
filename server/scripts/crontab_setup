@@ -5,7 +5,7 @@ v="version_placeholder"
 echo "Crontab Setup Script"
 echo "Name: $s"
 echo "Minecraft Version: $v"
-read -p "IMPORTANT!!! This script MUST be run from the server directory. I utilizes the PWD command and will only function if run from where your server is running. If this is run from the install_server script (as part of the first time install process) or the management script then everything should be good. DO NOT RUN directly from the scripts directory. Press any key to continue."
+read -p "IMPORTANT!!! This script MUST be run from the server directory. It utilizes the PWD command and will only function if run from where your server is running. If this is run from the install_server script (as part of the first time install process) or the management script then everything should be good. DO NOT RUN directly from the scripts directory. Press any key to continue."
 crontab -l > cron_temp
 echo "0 0 * * * cd $PWD && ./backup_s_server" >> cron_temp
 echo "@reboot cd $PWD && ./start_server" >> cron_temp
