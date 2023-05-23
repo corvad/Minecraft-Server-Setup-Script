@@ -11,8 +11,11 @@ echo "Minecraft Version: $v"
 sleep 45
 find ../../${destination} -mtime +${days} -type d -exec rm -r {} \;
 date="$(date +"%d-%m-%Y")"
-mkdir ../../${destination}/${date}
-cp -r * ../../${destination}/${date}
+rand=""
+rand+="-"
+rand+="$RANDOM"
+mkdir ../../${destination}/${date}/${rand}
+cp -r * ../../${destination}/${date}/${rand}
 echo "Server Backup Complete."
 echo "Starting Server"
 ./start_server
