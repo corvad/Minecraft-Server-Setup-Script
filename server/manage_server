@@ -114,7 +114,8 @@ then
 
 elif [ $selection -eq 10 ]
 then
-  ./scripts/crontab_setup
+  cd scripts
+  ./crontab_setup
   exit
 
 elif [ $selection -eq 11 ]

@@ -50,15 +50,16 @@ then
 fi
 
 dest="${session}_backup"
+dy="${days}"
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/backup_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/backup_server
 sed -i '/destination=/c\destination='"\"${dest}\"" ./server/scripts/backup_server
-sed -i '/days=/c\days='"\"${days}\"" ./server/scripts/backup_server
+sed -i '/days=/c\days='"\"${dy}\"" ./server/scripts/backup_server
 
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/backup_s_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/backup_s_server
 sed -i '/destination=/c\destination='"\"${dest}\"" ./server/scripts/backup_s_server
-sed -i '/days=/c\days='"\"${days}\"" ./server/scripts/backup_s_server
+sed -i '/days=/c\days='"\"${dy}\"" ./server/scripts/backup_s_server
 
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/connect_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/connect_server
