@@ -2,9 +2,9 @@ Minecraft Setup and Managing Script Suite
 
 Make sure you have installed Java 17 and curl.
 
-Unzip the files.
+Right now this script only supports Oracle Linux beacuse of how it configures the firewall. I plan to add more broad support in a later version.
 
-Then run:
+Run:
 ./install.sh
 
 That's it. The install will guide you the rest of the way.
@@ -14,3 +14,6 @@ Then to manage run the manage_server file in your main minecraft server director
 
 Makeself Command:
 makeself --notemp . install.sh "Next Generation Minecraft Installer" ./install_server
+
+Change Backup Retention Days:
+Edit both the backup_server and backup_s_server located in the scripts directory by changing the days="" variable. The default is 14 days. In a future version the will be revised to work with the manage_server script and the install script.

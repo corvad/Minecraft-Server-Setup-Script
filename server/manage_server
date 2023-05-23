@@ -9,13 +9,13 @@ echo "[2] Stop Server."
 echo "[3] Save (Flush to Disk) Server."
 echo "[4] Whitelist Modifications."
 echo "[5] Firewall Settings."
-echo "[6] Change Backup Retention Period."
-echo "[7] Change Server Version."
-echo "[8] Redownload Different Jar."
-echo "[9] Change Memory Amount."
-echo "[10] Schedule Backups."
-echo "[11] Unschedule Backups."
-echo "[12] Backup Server Now."
+#echo "[6] Change Backup Retention Period."
+echo "[6] Change Server Version."
+echo "[7] Redownload Different Jar."
+echo "[8] Change Memory Amount."
+echo "[9] Schedule Backups."
+echo "[10] Unschedule Backups."
+echo "[11] Backup Server Now."
 read -p "Enter Selection: " selection
 
 if [ $selection -eq 0 ]
@@ -48,20 +48,20 @@ then
   ./scripts/oracle_port_config
   exit
 
-elif [ $selection -eq 6 ]
-then
-  read -p "How many days would you like to keep the daily backups?: " days
-  if [[ -n ${days//[0-9]/} ]]
-  then
-    echo "ERROR! -- Days amount cannot be string. Must be number."
-    exit
-  fi
-  sed -i '/days=/c\days='"\"${days}\"" ./scripts/backup_server
-  sed -i '/days=/c\days='"\"${days}\"" ./scripts/backup_s_server
-  echo "Backup retention set to $days days."
-  exit
+#elif [ $selection -eq 6 ]
+#then
+#  read -p "How many days would you like to keep the daily backups?: " days
+#  if [[ -n ${days//[0-9]/} ]]
+#  then
+#    echo "ERROR! -- Days amount cannot be string. Must be number."
+#    exit
+#  fi
+#  sed -i '/days=/c\days='"\"${days}\"" ./scripts/backup_server
+#  sed -i '/days=/c\days='"\"${days}\"" ./scripts/backup_s_server
+#  echo "Backup retention set to $days days."
+#  exit
 
-elif [ $selection -eq 7 ]
+elif [ $selection -eq 6 ]
 then
   read -p "What would you like the new version of this server instance to be?: " version
   if [ -z "$version" ]
@@ -86,7 +86,7 @@ then
   ./scripts/start_server
   exit
 
-elif [ $selection -eq 8 ]
+elif [ $selection -eq 7 ]
 then
   read -p "To download a new jar the server will have to go offline. This process will also create a backup. Please be patient as the backup may not show progress while it is running. Press any key to continue."
   ./scripts/backup_server
@@ -97,7 +97,7 @@ then
   ./scripts/start_server
   exit
 
-elif [ $selection -eq 9 ]
+elif [ $selection -eq 8 ]
 then
   read -p "How much memory would you like to run the server with? (GB): " mem
   if [[ -n ${mem//[0-9]/} ]]
@@ -112,18 +112,18 @@ then
   ./scripts/start_server
   exit
 
-elif [ $selection -eq 10 ]
+elif [ $selection -eq 9 ]
 then
   cd scripts
   ./crontab_setup
   exit
 
-elif [ $selection -eq 11 ]
+elif [ $selection -eq 10 ]
 then
   ./scripts/crontab_reset
   exit
 
-elif [ $selection -eq 12 ]
+elif [ $selection -eq 11 ]
 then
   read -p "This process will create a backup, it will have to shutdown the server for a few minutes but will automatically start it again. Please be patient as the backup may not show progress while it is running. Press any key to continue."
   ./scripts/backup_server

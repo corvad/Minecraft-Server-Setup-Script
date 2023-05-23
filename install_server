@@ -39,27 +39,27 @@ then
   echo "ERROR! -- Memory amount cannot be string. Must be number."
   exit
 fi
-read -p "How many days would you like to keep the daily backups?: " days
-if [[ -n ${days//[0-9]/} ]]
-then
-  rm server -rf
-  rm server_backup -rf
-  rm ./install_server
-  echo "ERROR! -- Days amount cannot be string. Must be number."
-  exit
-fi
+#read -p "How many days would you like to keep the daily backups?: " days
+#if [[ -n ${days//[0-9]/} ]]
+#then
+#  rm server -rf
+#  rm server_backup -rf
+#  rm ./install_server
+#  echo "ERROR! -- Days amount cannot be string. Must be number."
+#  exit
+#fi
 
 dest="${session}_backup"
-dy="${days}"
+#dy="${days}"
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/backup_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/backup_server
 sed -i '/destination=/c\destination='"\"${dest}\"" ./server/scripts/backup_server
-sed -i '/days=/c\days='"\"${dy}\"" ./server/scripts/backup_server
+#sed -i '/days=/c\days='"\"${dy}\"" ./server/scripts/backup_server
 
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/backup_s_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/backup_s_server
 sed -i '/destination=/c\destination='"\"${dest}\"" ./server/scripts/backup_s_server
-sed -i '/days=/c\days='"\"${dy}\"" ./server/scripts/backup_s_server
+#sed -i '/days=/c\days='"\"${dy}\"" ./server/scripts/backup_s_server
 
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/connect_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/connect_server

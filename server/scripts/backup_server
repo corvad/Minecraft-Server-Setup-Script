@@ -3,7 +3,7 @@ clear
 s="session_placeholder"
 v="version_placeholder"
 destination="destination_placeholder"
-days="days_placeholder"
+days="14"
 echo "Server Backup Script"
 echo "Name: $s"
 echo "Minecraft Version: $v"
