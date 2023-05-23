@@ -20,3 +20,6 @@ makeself --notemp . install.sh "Next Generation Minecraft Installer" ./install_s
 
 Change Backup Retention Days:
 Edit both the backup_server and backup_s_server located in the scripts directory by changing the days="" variable. The default is 14 days. In a future version the will be revised to work with the manage_server script and the install script.
+
+
+DISCLAIMER: I do not own or even pretend to misuse the Minecraft or other related trademarks. Those are the trademarks of Microsoft and Mojang and with this I will not interfere.
