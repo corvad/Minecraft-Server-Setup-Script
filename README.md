@@ -1,4 +1,4 @@
-Minecraft Setup and Managing Script Suite
+# Minecraft Setup and Managing Script Suite
 
 Make sure you have installed Java 17 and curl.
 
