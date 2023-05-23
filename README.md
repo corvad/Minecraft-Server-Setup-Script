@@ -1,5 +1,8 @@
 # Minecraft Setup and Managing Script Suite
 
+Check the Releases tab for the latest release to download.
+https://github.com/corvad/Minecraft-Server-Setup-Script/releases/
+
 Make sure you have installed Java 17 and curl.
 
 Right now this script only supports Oracle Linux beacuse of how it configures the firewall. I plan to add more broad support in a later version.
