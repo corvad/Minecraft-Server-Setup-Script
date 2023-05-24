@@ -1,9 +1,13 @@
 # Minecraft Setup and Managing Script Suite
 
-Check the Releases tab for the latest release to download.
+Supported OS:
+- Ubuntu Server
+- Oracle Linux
+
+Check the Releases tab for the latest release to download specific to the OS you are running.
 https://github.com/corvad/Minecraft-Server-Setup-Script/releases/
 
-Make sure you have installed Java 17 and curl.
+Make sure you have installed Java 17, curl, and tmux. These are requirements, and as such are not optional.
 
 Right now this script only supports Oracle Linux beacuse of how it configures the firewall. I plan to add more broad support in a later version.
 
