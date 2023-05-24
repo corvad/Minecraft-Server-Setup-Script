@@ -1,0 +1,25 @@
+#!/bin/bash
+clear
+s="session_placeholder"
+v="version_placeholder"
+echo "Server Firewall Script (Ubuntu Server)"
+echo "Name: $s"
+echo "Minecraft Version: $v"
+echo "Modes:"
+echo "[0] Add Port to Firewall."
+echo "[1] Remove Port from Firewall"
+read -p "Enter Selection: " selection
+if [ $selection -eq 0 ]
+then
+  read -p "Port (Normally 25565): " port
+  sudo ufw allow ${port}
+  echo "Firewall Port Added."
+elif [ $selection -eq 1 ]
+then
+  read -p "Port (Normally 25565): " port
+  sudo ufw delete allow ${port}
+  echo "Firewall Port Removed."
+else
+  echo "ERROR! -- Invalid Selection!"
+  exit
+fi

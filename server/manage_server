@@ -46,6 +46,7 @@ then
 elif [ $selection -eq 5 ]
 then
   ./scripts/oracle_port_config
+  #./scripts/ubuntu_port_config
   exit
 
 #elif [ $selection -eq 6 ]

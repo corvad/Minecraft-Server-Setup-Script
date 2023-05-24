@@ -18,6 +18,7 @@ nano eula.txt
 nano server.properties
 cd scripts
 ./oracle_port_config
+#./ubuntu_port_config
 ./crontab_setup
 cd ..
 ./scripts/start_server

@@ -3,7 +3,23 @@ clear
 echo "Welcome to the Next Generation Minecraft Installer!"
 if ! java --version | grep 17 -q
 then
-  echo "ERROR! -- Cannot find valid java instance. Must be version 17. Please make sure it is installed."
+  echo "ERROR! -- Cannot find valid java installation. Must be version 17. Please make sure it is installed."
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
+  exit
+fi
+if ! command -v tmux &> /dev/null
+then
+  echo "ERROR! -- Cannot find valid tmux installation. Please make sure it is installed."
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
+  exit
+fi
+if ! command -v curl &> /dev/null
+then
+  echo "ERROR! -- Cannot find valid curl installation. Please make sure it is installed."
   rm server -rf
   rm server_backup -rf
   rm ./install_server
@@ -75,6 +91,9 @@ sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/first_time
 
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/oracle_port_config
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/oracle_port_config
+
+sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/ubuntu_port_config
+sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/ubuntu_port_config
 
 sed -i '/s=/c\s='"\"${session}\"" ./server/scripts/save_server
 sed -i '/v=/c\v='"\"${version}\"" ./server/scripts/save_server
