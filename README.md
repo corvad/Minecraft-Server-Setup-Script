@@ -9,21 +9,21 @@ Supported OS:
 Check the Releases tab for the latest release to download specific to the OS you are running.
 https://github.com/corvad/Minecraft-Server-Setup-Script/releases/
 
-Make sure you have installed Java 17, curl, and tmux. These are requirements, and as such are not optional. If on Ubuntu ufw must also be installed.
+## Make sure you have installed Java 17, curl, and tmux. These are requirements, and as such are not optional. If on Ubuntu ufw must also be installed.
 
 Right now this script only supports Oracle Linux beacuse of how it configures the firewall. I plan to add more broad support in a later version.
 
-Run:
-./install.sh
+## Run:
+## ./install_ubuntu.sh or ./install_oracle.sh
 
 That's it. The install will guide you the rest of the way.
 
 Then to manage run the manage_server file in your main minecraft server directory (where the server.jar is) like so:
 ./manage_server
 
-Makeself Command:
-Ubuntu Server: makeself --notemp . install.sh "Next Generation Minecraft Installer (Ubuntu Server)" ./install_server
-Oracle Linux: makeself --notemp . install.sh "Next Generation Minecraft Installer (Oracle Linux)" ./install_server
+# Makeself Command:
+## Ubuntu Server: makeself --notemp . install_ubuntu.sh "Next Generation Minecraft Installer (Ubuntu Server)" ./install_server
+## Oracle Linux: makeself --notemp . install_oracle.sh "Next Generation Minecraft Installer (Oracle Linux)" ./install_server
 
 To build for the different versions the build command changes but also the command in both the manage_server and first_time scripts must be updated accordingly between ubuntu_port_config and oracle_port_config. I have provided both versions on the releases page.
 
