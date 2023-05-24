@@ -11,8 +11,6 @@ https://github.com/corvad/Minecraft-Server-Setup-Script/releases/
 
 ## Make sure you have installed Java 17, curl, tmux, and crontab. These are requirements, and as such are not optional. If on Ubuntu ufw must also be installed.
 
-Right now this script only supports Oracle Linux beacuse of how it configures the firewall. I plan to add more broad support in a later version.
-
 ## Run:
 ## ./install_ubuntu.sh or ./install_oracle.sh
 
