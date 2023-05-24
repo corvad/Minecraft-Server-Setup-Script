@@ -3,13 +3,12 @@ clear
 s="session_placeholder"
 v="version_placeholder"
 destination="destination_placeholder"
-days="14"
 echo "Server Backup Script"
 echo "Name: $s"
 echo "Minecraft Version: $v"
 ./stop_server
 sleep 45
-find ../../${destination} -mtime +${days} -type d -exec rm -r {} \;
+find ../../${destination} -mtime +14 -type d -exec rm -r {} \;
 date="$(date +"%d-%m-%Y")"
 rand=""
 rand+="-"

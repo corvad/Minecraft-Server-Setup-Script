@@ -25,6 +25,14 @@ then
   rm ./install_server
   exit
 fi
+if ! command -v crontab &> /dev/null
+then
+  echo "ERROR! -- Cannot find valid crontab installation. Please make sure it is installed."
+  rm server -rf
+  rm server_backup -rf
+  rm ./install_server
+  exit
+fi
 #if ! command -v ufw &> /dev/null
 #then
 #  echo "ERROR! -- Cannot find valid ufw installation. Please make sure it is installed."
