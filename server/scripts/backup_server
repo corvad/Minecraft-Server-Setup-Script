@@ -14,6 +14,6 @@ date="$(date +"%d-%m-%Y")"
 rand=""
 rand+="-"
 rand+="$RANDOM"
-mkdir ../../${destination}/${date}/${rand}
-cp -r * ../../${destination}/${date}/${rand}
+mkdir ../../${destination}/${date}${rand}
+cp -r * ../../${destination}/${date}${rand}
 echo "Server Backup Complete."
