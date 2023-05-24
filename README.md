@@ -1,5 +1,7 @@
 # Minecraft Setup and Managing Script Suite
 
+A scripts suite that makes it easy to get a Minecraft server up within minutes. And manage without headaches, including backups.
+
 Supported OS:
 - Ubuntu Server
 - Oracle Linux
