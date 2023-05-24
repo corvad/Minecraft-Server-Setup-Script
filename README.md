@@ -25,7 +25,7 @@ Then to manage run the manage_server file in your main minecraft server director
 ## Ubuntu Server: makeself --notemp . install_ubuntu.sh "Next Generation Minecraft Installer (Ubuntu Server)" ./install_server
 ## Oracle Linux: makeself --notemp . install_oracle.sh "Next Generation Minecraft Installer (Oracle Linux)" ./install_server
 
-To build for the different versions the build command changes but also the command in both the manage_server and first_time scripts must be updated accordingly between ubuntu_port_config and oracle_port_config. I have provided both versions on the releases page.
+To build for the different versions the build command changes but also the command in both the manage_server and first_time scripts must be updated accordingly between ubuntu_port_config and oracle_port_config. I have provided both versions on the releases page. The install_server script will also need to be edited to get the proper os versions checked.
 
 Change Backup Retention Days:
 Edit both the backup_server and backup_s_server located in the scripts directory by changing the days="" variable. The default is 14 days. In a future version the will be revised to work with the manage_server script and the install script.
