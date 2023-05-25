@@ -58,6 +58,7 @@ then
   echo "ERROR! -- Name cannot be empty."
   exit
 fi
+session=$(echo $session | tr "." "-")
 session=$(echo $session | tr " " "-")
 session+="-"
 session+="$RANDOM"
