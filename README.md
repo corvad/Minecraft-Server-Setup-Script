@@ -16,6 +16,8 @@ https://github.com/corvad/Minecraft-Server-Setup-Script/releases/
 
 That's it. The install will guide you the rest of the way.
 
+Warning: Due to limitations in tmux do NOT put decimals in the minecraft server's name. It will not work correctly. I assume no repsonsibilty for people not reading this warning and then complaining.
+
 Then to manage run the manage_server file in your main minecraft server directory (where the server.jar is) like so:
 ./manage_server
 
